@@ -1,0 +1,9 @@
+      *----------------------------------------------------------------
+      * JCRSUBRPF - Subroutines List report workfile - PF
+      *   Craig Rutledge  < www.jcrcmds.com >
+      *----------------------------------------------------------------
+     A          R JCRSUBRPFR                TEXT('List Subroutines')
+     A            SRUPPERCAS   100A         COLHDG('Parent Key')
+     A            SRPARENT     100A         COLHDG('Parent Subroutines')
+     A            SRCHILD      100A         COLHDG('Child Subroutines')
+     A          K SRUPPERCAS

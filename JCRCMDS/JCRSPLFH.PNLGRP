@@ -1,0 +1,30 @@
+:PNLGRP.:HELP NAME='JCRSPLF'.List Spool Files with Options (JCRSPLF) - Help
+.*--------------------------------------------------------------------
+.*   Craig Rutledge  < www.jcrcmds.com >
+.*--------------------------------------------------------------------
+:P.Displays list of spooled file names that meet selection criteria.
+Select useful options to perform. Uses SPLF0030 format that
+is several times faster than WRKSPLF for large sets of spooled files.:EHELP.
+.*--------------------------------------------------------------------
+:HELP NAME='JCRSPLF/SPLFNAME'.Spooled File Name - Help :XH3.Spooled File Name (SPLFNAME)
+:P.Spooled file name/generic*/*ALL to use as list filter.:EHELP.
+
+:HELP NAME='JCRSPLF/USERDATA'.User Data - Help :XH3.User Data (USERDATA)
+:P.Spooled file user data filter.
+:PARML.:PT.:PK def.*ALL:EPK.:PD.Do not filter on user data.
+:PT.user-data-name :PD.Enter user data string to select.:EPARML.:EHELP.
+
+:HELP NAME='JCRSPLF/OUTQ'.Outq - Help :XH3.Outq (OUTQ)
+:P.Specify name of outq to search for selected spooled files.:EHELP.
+
+:HELP NAME='JCRSPLF/USER'.User - Help :XH3.User (USER)
+:P.Select spooled files for this user profile.
+:PARML.:PT.:PK def.*CURRENT:EPK.:PD.Select from spooled files of signed-on user.
+:PT.:PK.*ALL:EPK.:PD.Select from spooled files of all users.
+:PT.user-profile-name :PD.Enter name of user profile to select. :EPARML.:EHELP.
+
+:HELP NAME='JCRSPLF/FORMTYPE'.Form Type - Help :XH3.Form Type (FORMTYPE)
+:P.Spooled file form type filter.
+:PARML.:PT.:PK def.*ALL:EPK.:PD.Do not use form type as filter.
+:PT.:PK.*STD:EPK.:PD.Select only *STD form types.
+:PT.form-type-name :PD.Enter name of form type to select.:EPARML.:EHELP.:EPNLGRP.

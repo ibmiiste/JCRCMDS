@@ -1,0 +1,108 @@
+      *----------------------------------------------------------------
+      * JCRSCDED - Search/Copy Job Schedule Entries - DSPF
+      *   Craig Rutledge  < www.jcrcmds.com >
+      *----------------------------------------------------------------
+     A                                      DSPSIZ(27 132 *DS4)
+     A                                      CA03
+     A                                      CA05
+     A                                      CA06
+     A                                      CA11
+     A                                      CA12
+     A                                      CF13
+     A                                      INDARA
+     A                                      PRINT
+      *----------------------------------------------------------------
+     A          R SBFDTA1                   SFL
+      * save command parms if user selects to copy
+     A            SENTRYNBR     10A  H
+     A            SCMD         512A  H
+     A            SFRQ          10A  H
+     A            SSCDDATE      10A  H
+     A            SSCDDAY       70A  H
+     A            SSCDTIME       8A  H
+     A            SOMITDATE    200A  H
+     A            SRCYACN       10A  H
+     A            SJOBD         21A  H
+     A            SJOBQ         21A  H
+     A            SUSER         10A  H
+     A            SMSGQ         21A  H
+     A            STEXT         50A  H
+      *---------------------------------------------
+     A            AOPTIONS1      1A  P
+     A            SBFOPTION      1A  B  6  3DSPATR(&AOPTIONS1)
+     A            SBJOB         10A  O  6  7
+     A            SBSTAT         3A  O  6 20
+     A            SBSDATE       10A  O  6 27
+     A            SBSTIME        8A  O  6 39
+     A            SBFREQ        10A  O  6 49
+     A            SBCMD         70A  O  6 61
+      *----------------------------------------------------------------
+     A          R SBFCTL1                   SFLCTL(SBFDTA1)
+     A                                      SFLSIZ(0361)
+     A                                      SFLPAG(0019)
+     A                                      CHANGE(23)
+     A                                      OVERLAY
+     A  31                                  SFLDSP
+     A  32                                  SFLDSPCTL
+     A N32                                  SFLCLR
+     A N34                                  SFLEND(*MORE)
+     A            SFLRCDNBR      4S 0H      SFLRCDNBR(CURSOR)
+     A                                  1  3'JCRSCDE'
+     A                                      COLOR(BLU)
+     A                                  1 19'Search Job Schedule Entries with C-
+     A                                      opy option'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A            SCDOW          9A  O  1110COLOR(BLU)
+     A                                  1120DATE
+     A                                      EDTCDE(Y)
+     A                                      COLOR(BLU)
+     A                                  2 20'HLD SCD SAV'
+     A                                      COLOR(BLU)
+     A                                  2110SYSNAME
+     A                                      COLOR(BLU)
+     A                                  3  3'C=Copy Prompt'
+     A                                      COLOR(BLU)
+     A                                  3 19'5=Work with Job Schedule Entry'
+     A                                      COLOR(BLU)
+     A                                  3 60'(leading space = contains) '
+     A            SCJOB         10A  B  4  7CHANGE(12)
+     A            SCSTAT         3A  B  4 20
+     A                                  4 27'Schedule'
+     A                                      DSPATR(HI)
+     A            SCCMD         70A  B  4 61
+     A                                  5  2'Opt'
+     A                                      DSPATR(HI)
+     A                                  5  7'Job'
+     A                                      DSPATR(HI)
+     A                                  5 19'Status'
+     A                                      DSPATR(HI)
+     A                                  5 27'Date'
+     A                                      DSPATR(HI)
+     A                                  5 39'Time'
+     A                                      DSPATR(HI)
+     A                                  5 49'Frequency'
+     A                                      DSPATR(HI)
+     A                                  5 61'Command'
+     A                                      DSPATR(HI)
+      *----------------------------------------------------------------
+     A          R SFOOTER1
+     A                                      OVERLAY
+     A                                      BLINK
+     A                                 26  2'F3=Exit'
+     A                                      COLOR(BLU)
+     A                                 26 20'F5=Refresh'
+     A                                      COLOR(BLU)
+     A                                 26 40'F6=Dspjoblog'
+     A                                      COLOR(BLU)
+     A                                 26 69'F12=Cancel'
+     A                                      COLOR(BLU)
+      *----------------------------------------------------------------
+     A          R MSGSFL                    SFL SFLMSGRCD(27)
+     A            MSGSFLKEY                 SFLMSGKEY
+     A            PROGID                    SFLPGMQ(10)
+     A          R MSGCTL                    SFLCTL(MSGSFL)
+     A                                      SFLDSP SFLDSPCTL SFLINZ
+     A N14                                  SFLEND
+     A                                      SFLPAG(1) SFLSIZ(2)
+     A            PROGID                    SFLPGMQ(10)

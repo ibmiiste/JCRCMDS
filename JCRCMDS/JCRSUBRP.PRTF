@@ -1,0 +1,24 @@
+      *----------------------------------------------------------------
+      * JCRSUBRP - Subroutines List - PRTF
+      *   Craig Rutledge  < www.jcrcmds.com >
+      *----------------------------------------------------------------
+      *---                                  PAGESIZE(66 132)
+     A          R PRTHEAD
+     A                                     2'JCRSUBR'
+     A                                      SKIPB( 1)
+     A                                    27'Subroutine Stack Listing'
+     A            SCDOW          9        77
+     A                                    88DATE
+     A                                      EDTCDE(Y)
+     A                                   108'Page'
+     A            PAGE1          4  0    114
+     A                                      SPACEA(2)
+     A            SCOBJHEAD    100         2
+     A                                      SPACEA(2)
+     A          R PRTBEGSR
+     A            ALPHA100     100         2
+     A                                      SPACEB(1)
+     A                                      SPACEA(1)
+     A          R PRTCHILD
+     A            ALPHA132     132         1
+     A                                      SPACEA(1)

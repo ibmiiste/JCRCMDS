@@ -1,0 +1,57 @@
+      *----------------------------------------------------------------
+      * JCRJOBSIOD - Work with selected jobs - I/O display - DSPF
+      *   Craig Rutledge  < www.jcrcmds.com >
+      *----------------------------------------------------------------
+     A                                      DSPSIZ(24 80 *DS3 27 132 *DS4)
+     A                                      INDARA CA03 CA05 CA07 CA08 CA09 CA12
+     A          R SBFDTA1                   SFL
+     A            SBFOPTION      1Y 0B  5  2EDTCDE(4)
+     A            FILEACTUAL    10A  O  5  4
+     A            LIBACTUAL     10A  O  5 15
+     A            FILETYPE       4A  O  5 26
+     A            TOTALIO        9Y 0O  5 31EDTCDE(4)
+     A            RELATIVERN     9Y 0O  5 41EDTCDE(4)
+     A            FILETEXT      28A  O  5 51
+      *----------------------------------------------------------------
+     A          R SBFCTL1                   SFLCTL(SBFDTA1) OVERLAY
+     A                                      SFLPAG(17) SFLSIZ(85)
+     A  31                                  SFLDSP
+     A  32                                  SFLDSPCTL
+     A N32                                  SFLCLR
+     A N34                                  SFLEND(*MORE)
+     A            SFLRCDNBR      4S 0H      SFLRCDNBR(CURSOR)
+     A                                  1  2'JCRJOBSIOR' COLOR(BLU)
+     A                                  1 23'Job File I/O' DSPATR(HI)
+     A            SCDOW          9A  O  1 62COLOR(BLU)
+     A                                  1 72DATE EDTCDE(Y) COLOR(BLU)
+     A                                  2  2'Job Name:' COLOR(BLU)
+     A            PJOBNAM       10A  O  2 12
+     A                                  2 25'User:' COLOR(BLU)
+     A            PJOBUSR       10A  O  2 31
+     A                                  2 45'Number:' COLOR(BLU)
+     A            PJOBNBR        6A  O  2 53
+     A                                  2 72SYSNAME COLOR(BLU)
+     A            SCHEADOPT     65A  O  3  2COLOR(BLU)
+     A                                  4  4'File' DSPATR(HI)
+     A                                  4 15'Library' DSPATR(HI)
+     A                                  4 26'Type' DSPATR(HI)
+     A                                  4 37'I/O' DSPATR(HI)
+     A                                  4 43'Record#' DSPATR(HI)
+     A                                  4 51'Text' DSPATR(HI)
+      *----------------------------------------------------------------
+     A          R SFOOTER1                  OVERLAY
+     A                                 23  2'F3=Exit' COLOR(BLU)
+     A                                 23 14'F5=Refresh' COLOR(BLU)
+     A                                 23 26'F7=I/O seq' COLOR(BLU)
+     A                                 23 39'F8=File Seq' COLOR(BLU)
+     A            FOOTF09       15     23 53COLOR(BLU)
+     A                                 23 69'F12=Cancel' COLOR(BLU)
+      *----------------------------------------------------------------
+     A          R MSGSFL                    SFL SFLMSGRCD(24)
+     A            MSGSFLKEY                 SFLMSGKEY
+     A            PROGID                    SFLPGMQ(10)
+     A          R MSGCTL                    SFLCTL(MSGSFL)
+     A                                      SFLDSP SFLDSPCTL SFLINZ
+     A N14                                  SFLEND
+     A                                      SFLPAG(1) SFLSIZ(2)
+     A            PROGID                    SFLPGMQ(10)
