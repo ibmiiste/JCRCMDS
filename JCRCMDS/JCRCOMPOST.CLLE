@@ -22,7 +22,7 @@
                /*---------------------------------------------------*/
                /* one time so zip utilities will compile            */
                /*  this omission will hopefully be fixed in a PTF   */
-             ADDBNDDIRE BNDDIR(QUSAPIBD) OBJ((QZIPUTIL))
+               /* ADDBNDDIRE BNDDIR(QUSAPIBD) OBJ((QZIPUTIL))       */
                /*---------------------------------------------------*/
                /*---------------------------------------------------*/
 
